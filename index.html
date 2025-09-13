@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MKF Diagnostics</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>MKF Diagnostics</h1>
+<p class="muted">Upload PDF or image — get lab flags and predicted conditions.</p>
+</header>
+
+<section class="upload">
+<label class="field"><span>Upload PDF or image</span><input id="fileInput" type="file" accept=".pdf,image/*"/></label>
+<div class="inline-fields">
+<label>Sex<select id="sex"><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></label>
+<label>Age<input id="age" type="number" min="0" max="120" value="35"/></label>
+</div>
+<button id="analyzeBtn">Analyze Report</button>
+</section>
+
+<section id="status" class="card"><strong>Status:</strong> <span id="statusText">Waiting for upload</span></section>
+
+<section id="flagsSection" class="card hidden">
+<h2>Lab Flags</h2>
+<div id="flagsList"></div>
+</section>
+
+<section id="predictionSection" class="card hidden">
+<h2>Predicted Conditions</h2>
+<div id="predictionList"></div>
+</section>
+
+<footer class="disclaimer"><strong>Disclaimer:</strong> Educational purposes only.</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
