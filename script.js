@@ -6,13 +6,6 @@ const LAB_DB = {
 "RBC":{name:"RBC", synonyms:["rbc","red blood cell","erythrocyte"],unit:"10^6/µL",ranges:{male:[4.5,5.9],female:[4.1,5.1],other:[4.1,5.9]}},
 "MCV":{name:"MCV", synonyms:["mcv","mean corpuscular volume"],unit:"fL",ranges:{male:[80,100],female:[80,100],other:[80,100]}},
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
-"MPV": {name:"Mean Platelet Volume", unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
-"TSH": {name:"Thyroid Stimulating Hormone", unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
-"CHOL": {name:"Total Cholesterol", unit:"mg/dL", ranges:{male:[125,200],female:[125,200],other:[125,200]}},
-"HDL": {name:"High-Density Lipoprotein", unit:"mg/dL", ranges:{male:[40,60],female:[50,60],other:[40,60]}},
-"LDL": {name:"Low-Density Lipoprotein", unit:"mg/dL", ranges:{male:[0,130],female:[0,130],other:[0,130]}},
-"TRIG": {name:"Triglycerides", unit:"mg/dL", ranges:{male:[0,150],female:[0,150],other:[0,150]}},
-/* Additional CBC & Metabolic tests */
 // add more as needed
 };
 
@@ -102,7 +95,6 @@ function predictConditions(labs){
   if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
   if(labs["CRP"] && labs["CRP"].value > 3) cond.push("Inflammation / Infection");
   if(labs["MCH"] && labs["MCH"].value < 27) cond.push("Possible Iron Deficiency (Low MCH)");
-  if(labs["PLT"] && labs["PLT"].value < 150) cond.push("Thrombocytopenia (Low Platelets)");
   if(labs["CHOL"] && labs["CHOL"].value > 200) cond.push("Hypercholesterolemia (High Total Cholesterol)");
   if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
   if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
@@ -168,6 +160,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
