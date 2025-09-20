@@ -8,8 +8,6 @@ const LAB_DB = {
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
 "RDW": {name:"Red Cell Distribution Width", unit:"%", ranges:{male:[11.5,14.5],female:[11.5,14.5],other:[11.5,14.5]}},
 "MPV": {name:"Mean Platelet Volume", unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
-"CRP_HIGH": {name:"C-Reactive Protein High Sensitivity", unit:"mg/L", ranges:{male:[0,3],female:[0,3],other:[0,3]}},
-"UA": {name:"Uric Acid", unit:"mg/dL", ranges:{male:[3.4,7.0],female:[2.4,6.0],other:[2.4,7.0]}},
 "TSH": {name:"Thyroid Stimulating Hormone", unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
 "FT4": {name:"Free T4", unit:"ng/dL", ranges:{male:[0.8,1.8],female:[0.8,1.8],other:[0.8,1.8]}},
 "FT3": {name:"Free T3", unit:"pg/mL", ranges:{male:[2.3,4.2],female:[2.3,4.2],other:[2.3,4.2]}},
@@ -113,7 +111,6 @@ function predictConditions(labs){
   if(labs["HCT"] && labs["HCT"].value < 36) cond.push("Anemia (Low Hematocrit)");
   if(labs["MCV"] && labs["MCV"].value > 100) cond.push("Macrocytosis (High MCV)");
   if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
-  if(labs["UA"] && labs["UA"].value > 7) cond.push("Hyperuricemia / Gout");
   if(labs["CRP_HIGH"] && labs["CRP_HIGH"].value > 3) cond.push("Inflammation / Infection");
   if(labs["MCH"] && labs["MCH"].value < 27) cond.push("Possible Iron Deficiency (Low MCH)");
   if(labs["PLT"] && labs["PLT"].value < 150) cond.push("Thrombocytopenia (Low Platelets)");
@@ -129,7 +126,6 @@ function predictConditions(labs){
   if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Possible Kidney Dysfunction (High Creatinine)");
   if(labs["ALT"] && labs["ALT"].value > 56) cond.push("Possible Liver Injury (High ALT)");
   if(labs["AST"] && labs["AST"].value > 40) cond.push("Possible Liver Injury (High AST)");
-  if(labs["ALP"] && labs["ALP"].value > 147) cond.push("Possible Liver/Bone Issue (High ALP)");
   if(labs["VITAMIN_D"] && labs["VITAMIN_D"].value < 30) cond.push("Vitamin D Deficiency");
   if(labs["VITAMIN_B12"] && labs["VITAMIN_B12"].value < 200) cond.push("Vitamin B12 Deficiency");
   if(labs["FOLATE"] && labs["FOLATE"].value < 3) cond.push("Folate Deficiency");
@@ -194,6 +190,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
