@@ -6,6 +6,15 @@ const LAB_DB = {
 "RBC":{name:"RBC", synonyms:["rbc","red blood cell","erythrocyte"],unit:"10^6/µL",ranges:{male:[4.5,5.9],female:[4.1,5.1],other:[4.1,5.9]}},
 "MCV":{name:"MCV", synonyms:["mcv","mean corpuscular volume"],unit:"fL",ranges:{male:[80,100],female:[80,100],other:[80,100]}},
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
+/* Additional CBC & Metabolic tests */
+"RDW": {name:"Red Cell Distribution Width", synonyms:["rdw","red cell distribution width"], unit:"%", ranges:{male:[11.5,14.5],female:[11.5,14.5],other:[11.5,14.5]}},
+"MPV": {name:"Mean Platelet Volume", synonyms:["mpv","mean platelet volume"], unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
+"LDH": {name:"Lactate Dehydrogenase", synonyms:["ldh","lactate dehydrogenase"], unit:"U/L", ranges:{male:[140,280],female:[140,280],other:[140,280]}},
+"CRP_HIGH": {name:"C-Reactive Protein High Sensitivity", synonyms:["hs-crp","crp hs"], unit:"mg/L", ranges:{male:[0,3],female:[0,3],other:[0,3]}},
+"UA": {name:"Uric Acid", synonyms:["uric acid","ua"], unit:"mg/dL", ranges:{male:[3.4,7.0],female:[2.4,6.0],other:[2.4,7.0]}},
+"TSH": {name:"Thyroid Stimulating Hormone", synonyms:["tsh"], unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
+"FT4": {name:"Free T4", synonyms:["ft4","free t4"], unit:"ng/dL", ranges:{male:[0.8,1.8],female:[0.8,1.8],other:[0.8,1.8]}},
+"FT3": {name:"Free T3", synonyms:["ft3","free t3"], unit:"pg/mL", ranges:{male:[2.3,4.2],female:[2.3,4.2],other:[2.3,4.2]}},
 // add more as needed
 };
 
@@ -90,6 +99,26 @@ function predictConditions(labs){
   if(labs["HGB"] && labs["HGB"].value<12) cond.push("Anemia (Low Hemoglobin)");
   if(labs["WBC"] && labs["WBC"].value>11) cond.push("Possible Infection (High WBC)");
   if(labs["PLT"] && labs["PLT"].value<150) cond.push("Thrombocytopenia (Low Platelets)");
+  if (labResults["HGB"] < LAB_DB["HGB"].ranges.male[0] || labResults["HCT"] < LAB_DB["HCT"].ranges.male[0]) {
+    predicted.push("Anemia");
+}
+
+if (labResults["GLU"] > LAB_DB["GLU"].ranges.male[1] || labResults["A1C"] > 5.7) {
+    predicted.push("Diabetes");
+}
+
+if (labResults["TSH"] < LAB_DB["TSH"].ranges.male[0] || labResults["TSH"] > LAB_DB["TSH"].ranges.male[1]) {
+    predicted.push("Thyroid Disorder");
+}
+
+if (labResults["UA"] > LAB_DB["UA"].ranges.male[1]) {
+    predicted.push("Gout");
+}
+
+if (labResults["CRP_HIGH"] > LAB_DB["CRP_HIGH"].ranges.male[1]) {
+    predicted.push("Inflammation");
+}
+
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -151,3 +180,4 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
