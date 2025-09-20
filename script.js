@@ -8,7 +8,6 @@ const LAB_DB = {
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
 "RDW": {name:"Red Cell Distribution Width", unit:"%", ranges:{male:[11.5,14.5],female:[11.5,14.5],other:[11.5,14.5]}},
 "MPV": {name:"Mean Platelet Volume", unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
-"LDH": {name:"Lactate Dehydrogenase", unit:"U/L", ranges:{male:[140,280],female:[140,280],other:[140,280]}},
 "CRP_HIGH": {name:"C-Reactive Protein High Sensitivity", unit:"mg/L", ranges:{male:[0,3],female:[0,3],other:[0,3]}},
 "UA": {name:"Uric Acid", unit:"mg/dL", ranges:{male:[3.4,7.0],female:[2.4,6.0],other:[2.4,7.0]}},
 "TSH": {name:"Thyroid Stimulating Hormone", unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
@@ -20,11 +19,9 @@ const LAB_DB = {
 "HDL": {name:"High-Density Lipoprotein", unit:"mg/dL", ranges:{male:[40,60],female:[50,60],other:[40,60]}},
 "LDL": {name:"Low-Density Lipoprotein", unit:"mg/dL", ranges:{male:[0,130],female:[0,130],other:[0,130]}},
 "TRIG": {name:"Triglycerides", unit:"mg/dL", ranges:{male:[0,150],female:[0,150],other:[0,150]}},
-"BUN": {name:"Blood Urea Nitrogen", unit:"mg/dL", ranges:{male:[7,20],female:[7,20],other:[7,20]}},
 "CREAT": {name:"Creatinine", unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}},
 "ALT": {name:"Alanine Aminotransferase", unit:"U/L", ranges:{male:[7,56],female:[7,56],other:[7,56]}},
 "AST": {name:"Aspartate Aminotransferase", unit:"U/L", ranges:{male:[10,40],female:[10,40],other:[10,40]}},
-"ALP": {name:"Alkaline Phosphatase", unit:"U/L", ranges:{male:[45,115],female:[30,100],other:[30,115]}},
 "VITAMIN_D": {name:"Vitamin D", unit:"ng/mL", ranges:{male:[30,100],female:[30,100],other:[30,100]}},
 "VITAMIN_B12": {name:"Vitamin B12", unit:"pg/mL", ranges:{male:[200,900],female:[200,900],other:[200,900]}},
 "FOLATE": {name:"Folate", unit:"ng/mL", ranges:{male:[3,17],female:[3,17],other:[3,17]}}
@@ -197,6 +194,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
