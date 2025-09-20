@@ -99,6 +99,9 @@ function predictConditions(labs){
   if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
   if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
   if(labs["TRIG"] && labs["TRIG"].value > 150) cond.push("Hypertriglyceridemia (High Triglycerides)");
+  if(labs["VITAMIN_D"] && labs["VITAMIN_D"].value < 30) cond.push("Vitamin D Deficiency");
+  if(labs["VITAMIN_B12"] && labs["VITAMIN_B12"].value < 200) cond.push("Vitamin B12 Deficiency");
+  if(labs["FOLATE"] && labs["FOLATE"].value < 3) cond.push("Folate Deficiency");
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -160,6 +163,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
