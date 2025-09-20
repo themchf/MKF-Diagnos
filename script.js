@@ -9,9 +9,6 @@ const LAB_DB = {
 "RDW": {name:"Red Cell Distribution Width", unit:"%", ranges:{male:[11.5,14.5],female:[11.5,14.5],other:[11.5,14.5]}},
 "MPV": {name:"Mean Platelet Volume", unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
 "TSH": {name:"Thyroid Stimulating Hormone", unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
-"FT4": {name:"Free T4", unit:"ng/dL", ranges:{male:[0.8,1.8],female:[0.8,1.8],other:[0.8,1.8]}},
-"FT3": {name:"Free T3", unit:"pg/mL", ranges:{male:[2.3,4.2],female:[2.3,4.2],other:[2.3,4.2]}},
-"A1C": {name:"Hemoglobin A1C", unit:"%", ranges:{male:[4.0,5.6],female:[4.0,5.6],other:[4.0,5.6]}},
 "GLU": {name:"Fasting Glucose", unit:"mg/dL", ranges:{male:[70,99],female:[70,99],other:[70,99]}},
 "CHOL": {name:"Total Cholesterol", unit:"mg/dL", ranges:{male:[125,200],female:[125,200],other:[125,200]}},
 "HDL": {name:"High-Density Lipoprotein", unit:"mg/dL", ranges:{male:[40,60],female:[50,60],other:[40,60]}},
@@ -114,9 +111,6 @@ function predictConditions(labs){
   if(labs["CRP_HIGH"] && labs["CRP_HIGH"].value > 3) cond.push("Inflammation / Infection");
   if(labs["MCH"] && labs["MCH"].value < 27) cond.push("Possible Iron Deficiency (Low MCH)");
   if(labs["PLT"] && labs["PLT"].value < 150) cond.push("Thrombocytopenia (Low Platelets)");
-  if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
-  if(labs["GLU"] && labs["GLU"].value > 126) cond.push("Possible Diabetes (High Fasting Glucose)");
-  if(labs["A1C"] && labs["A1C"].value > 6.5) cond.push("Possible Diabetes (High A1C)");
   if(labs["CHOL"] && labs["CHOL"].value > 200) cond.push("Hypercholesterolemia (High Total Cholesterol)");
   if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
   if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
@@ -190,6 +184,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
