@@ -6,7 +6,6 @@ const LAB_DB = {
 "RBC":{name:"RBC", synonyms:["rbc","red blood cell","erythrocyte"],unit:"10^6/µL",ranges:{male:[4.5,5.9],female:[4.1,5.1],other:[4.1,5.9]}},
 "MCV":{name:"MCV", synonyms:["mcv","mean corpuscular volume"],unit:"fL",ranges:{male:[80,100],female:[80,100],other:[80,100]}},
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
-"RDW": {name:"Red Cell Distribution Width", unit:"%", ranges:{male:[11.5,14.5],female:[11.5,14.5],other:[11.5,14.5]}},
 "MPV": {name:"Mean Platelet Volume", unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
 "TSH": {name:"Thyroid Stimulating Hormone", unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
 "GLU": {name:"Fasting Glucose", unit:"mg/dL", ranges:{male:[70,99],female:[70,99],other:[70,99]}},
@@ -17,9 +16,6 @@ const LAB_DB = {
 "CREAT": {name:"Creatinine", unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}},
 "ALT": {name:"Alanine Aminotransferase", unit:"U/L", ranges:{male:[7,56],female:[7,56],other:[7,56]}},
 "AST": {name:"Aspartate Aminotransferase", unit:"U/L", ranges:{male:[10,40],female:[10,40],other:[10,40]}},
-"VITAMIN_D": {name:"Vitamin D", unit:"ng/mL", ranges:{male:[30,100],female:[30,100],other:[30,100]}},
-"VITAMIN_B12": {name:"Vitamin B12", unit:"pg/mL", ranges:{male:[200,900],female:[200,900],other:[200,900]}},
-"FOLATE": {name:"Folate", unit:"ng/mL", ranges:{male:[3,17],female:[3,17],other:[3,17]}}
 /* Additional CBC & Metabolic tests */
 // add more as needed
 };
@@ -115,14 +111,9 @@ function predictConditions(labs){
   if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
   if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
   if(labs["TRIG"] && labs["TRIG"].value > 150) cond.push("Hypertriglyceridemia (High Triglycerides)");
-  if(labs["CRP"] && labs["CRP"].value > 5) cond.push("Inflammation / Infection");
-  if(labs["BUN"] && labs["BUN"].value > 20) cond.push("Possible Kidney Dysfunction (High BUN)");
   if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Possible Kidney Dysfunction (High Creatinine)");
   if(labs["ALT"] && labs["ALT"].value > 56) cond.push("Possible Liver Injury (High ALT)");
   if(labs["AST"] && labs["AST"].value > 40) cond.push("Possible Liver Injury (High AST)");
-  if(labs["VITAMIN_D"] && labs["VITAMIN_D"].value < 30) cond.push("Vitamin D Deficiency");
-  if(labs["VITAMIN_B12"] && labs["VITAMIN_B12"].value < 200) cond.push("Vitamin B12 Deficiency");
-  if(labs["FOLATE"] && labs["FOLATE"].value < 3) cond.push("Folate Deficiency");
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -184,6 +175,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
