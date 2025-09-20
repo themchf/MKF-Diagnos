@@ -8,14 +8,10 @@ const LAB_DB = {
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
 "MPV": {name:"Mean Platelet Volume", unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
 "TSH": {name:"Thyroid Stimulating Hormone", unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
-"GLU": {name:"Fasting Glucose", unit:"mg/dL", ranges:{male:[70,99],female:[70,99],other:[70,99]}},
 "CHOL": {name:"Total Cholesterol", unit:"mg/dL", ranges:{male:[125,200],female:[125,200],other:[125,200]}},
 "HDL": {name:"High-Density Lipoprotein", unit:"mg/dL", ranges:{male:[40,60],female:[50,60],other:[40,60]}},
 "LDL": {name:"Low-Density Lipoprotein", unit:"mg/dL", ranges:{male:[0,130],female:[0,130],other:[0,130]}},
 "TRIG": {name:"Triglycerides", unit:"mg/dL", ranges:{male:[0,150],female:[0,150],other:[0,150]}},
-"CREAT": {name:"Creatinine", unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}},
-"ALT": {name:"Alanine Aminotransferase", unit:"U/L", ranges:{male:[7,56],female:[7,56],other:[7,56]}},
-"AST": {name:"Aspartate Aminotransferase", unit:"U/L", ranges:{male:[10,40],female:[10,40],other:[10,40]}},
 /* Additional CBC & Metabolic tests */
 // add more as needed
 };
@@ -104,16 +100,13 @@ function predictConditions(labs){
   if(labs["HCT"] && labs["HCT"].value < 36) cond.push("Anemia (Low Hematocrit)");
   if(labs["MCV"] && labs["MCV"].value > 100) cond.push("Macrocytosis (High MCV)");
   if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
-  if(labs["CRP_HIGH"] && labs["CRP_HIGH"].value > 3) cond.push("Inflammation / Infection");
+  if(labs["CRP"] && labs["CRP"].value > 3) cond.push("Inflammation / Infection");
   if(labs["MCH"] && labs["MCH"].value < 27) cond.push("Possible Iron Deficiency (Low MCH)");
   if(labs["PLT"] && labs["PLT"].value < 150) cond.push("Thrombocytopenia (Low Platelets)");
   if(labs["CHOL"] && labs["CHOL"].value > 200) cond.push("Hypercholesterolemia (High Total Cholesterol)");
   if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
   if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
   if(labs["TRIG"] && labs["TRIG"].value > 150) cond.push("Hypertriglyceridemia (High Triglycerides)");
-  if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Possible Kidney Dysfunction (High Creatinine)");
-  if(labs["ALT"] && labs["ALT"].value > 56) cond.push("Possible Liver Injury (High ALT)");
-  if(labs["AST"] && labs["AST"].value > 40) cond.push("Possible Liver Injury (High AST)");
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -175,6 +168,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
