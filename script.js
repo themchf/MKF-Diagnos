@@ -88,9 +88,9 @@ function interpretValue(key,value){
 function predictConditions(labs){
   const cond = [];
   if(labs["HGB"] && labs["HGB"].value<12) cond.push("Anemia (Low Hemoglobin)");
-  if(labs["WBC"] && labs["WBC"].value>11) cond.push("Possible Infection (High WBC)");
-  if(labs["PLT"] && labs["PLT"].value<150) cond.push("Thrombocytopenia (Low Platelets)");
-  if(labs["HCT"] && labs["HCT"].value < 36) cond.push("Anemia (Low Hematocrit)");
+  if(labs["WBC"] && labs["WBC"].value>10) cond.push("Possible Infection (High WBC)");
+  if(labs["PLT"] && labs["PLT"].value<125) cond.push("Thrombocytopenia (Low Platelets)");
+  if(labs["HCT"] && labs["HCT"].value < 35) cond.push("Anemia (Low Hematocrit)");
   if(labs["MCV"] && labs["MCV"].value > 100) cond.push("Macrocytosis (High MCV)");
   if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
   if(labs["CRP"] && labs["CRP"].value > 3) cond.push("Inflammation / Infection");
@@ -102,6 +102,8 @@ function predictConditions(labs){
   if(labs["VITAMIN_D"] && labs["VITAMIN_D"].value < 30) cond.push("Vitamin D Deficiency");
   if(labs["VITAMIN_B12"] && labs["VITAMIN_B12"].value < 210) cond.push("Vitamin B12 Deficiency");
   if(labs["FOLATE"] && labs["FOLATE"].value < 13) cond.push("Folate Deficiency");
+  if(labs["Ferritin"] && labs["Ferritin"].value < 25) cond.push("Low Iron");
+  if(labs["Iron"] && labs["Iron"].value < 49) cond.push("Low Iron");
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -163,6 +165,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
