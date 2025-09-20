@@ -99,16 +99,11 @@ function predictConditions(labs){
   if(labs["HGB"] && labs["HGB"].value<12) cond.push("Anemia (Low Hemoglobin)");
   if(labs["WBC"] && labs["WBC"].value>11) cond.push("Possible Infection (High WBC)");
   if(labs["PLT"] && labs["PLT"].value<150) cond.push("Thrombocytopenia (Low Platelets)");
-  if (labResults["HGB"] < LAB_DB["HGB"].ranges.male[0] || labResults["HCT"] < LAB_DB["HCT"].ranges.male[0])
-  if(labs["HGB"] && labs["HGB"].value < 12) cond.push("Anemia (Low Hemoglobin)");
-  if(labs["WBC"] && labs["WBC"].value > 11) cond.push("Possible Infection (High WBC)");
-  if(labs["PLT"] && labs["PLT"].value < 150) cond.push("Thrombocytopenia (Low Platelets)");
   if(labs["HCT"] && labs["HCT"].value < 36) cond.push("Anemia (Low Hematocrit)");
   if(labs["MCV"] && labs["MCV"].value > 100) cond.push("Macrocytosis (High MCV)");
   if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
   if(labs["UA"] && labs["UA"].value > 7) cond.push("Hyperuricemia / Gout");
   if(labs["CRP_HIGH"] && labs["CRP_HIGH"].value > 3) cond.push("Inflammation / Infection");
-
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -170,5 +165,6 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
