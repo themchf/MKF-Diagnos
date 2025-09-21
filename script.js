@@ -126,6 +126,12 @@ function predictConditions(labs){
   if(labs["Folate"] && labs["FOLATE"].value < 13) cond.push("Folate Deficiency");
   if(labs["Ferritin"] && labs["Ferritin"].value < 25) cond.push("Low Iron");
   if(labs["Iron"] && labs["Iron"].value < 49) cond.push("Low Iron");
+  if(labs["FT4"] && (labs["FT4"].value < 0.8 || labs["FT4"].value > 1.8)) cond.push("Thyroid Dysfunction (Free T4 abnormal)");
+  if(labs["FT3"] && (labs["FT3"].value < 2.3 || labs["FT3"].value > 4.2)) cond.push("Thyroid Dysfunction (Free T3 abnormal)");
+  if(labs["GLU"] && labs["GLU"].value > 99) cond.push("Hyperglycemia (High Fasting Glucose)");
+  if(labs["A1C"] && labs["A1C"].value > 5.6) cond.push("Prediabetes / Diabetes (High HbA1c)");
+  if(labs["BUN"] && labs["BUN"].value > 20) cond.push("Kidney Function Abnormal (High BUN)");
+  if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Kidney Function Abnormal (High Creatinine)");
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -187,6 +193,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
