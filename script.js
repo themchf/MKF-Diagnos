@@ -6,12 +6,28 @@ const LAB_DB = {
 "RBC":{name:"RBC", synonyms:["rbc","red blood cell","erythrocyte"],unit:"10^6/µL",ranges:{male:[4.5,5.9],female:[4.1,5.1],other:[4.1,5.9]}},
 "MCV":{name:"MCV", synonyms:["mcv","mean corpuscular volume"],unit:"fL",ranges:{male:[80,100],female:[80,100],other:[80,100]}},
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
-"ALT": {name:"Alanine Aminotransferase", synonyms:["alt"],unit:"U/L", ranges:{male:[7,56],female:[7,56],other:[7,56]}},
-"AST": {name:"Aspartate Aminotransferase", synonyms:["ast"],unit:"U/L", ranges:{male:[10,40],female:[10,40],other:[10,40]}},
-"ALP": {name:"Alkaline Phosphatase", synonyms:["alp"],unit:"U/L", ranges:{male:[45,115],female:[30,100],other:[30,115]}},
-"VITAMIN_D": {name:"Vitamin D", synonyms:["vitD"],unit:"ng/mL", ranges:{male:[30,100],female:[30,100],other:[30,100]}},
-"VITAMIN_B12": {name:"Vitamin B12", synonyms:["vitB12"],unit:"pg/mL", ranges:{male:[200,900],female:[200,900],other:[200,900]}},
-"FOLATE": {name:"Folate", synonyms:["vitB9"],unit:"ng/mL", ranges:{male:[3,17],female:[3,17],other:[3,17]}}
+"ALT": {name:"Alanine Aminotransferase", synonyms:["alt","alanine aminotransferase","sgpt"], unit:"U/L", ranges:{male:[7,56],female:[7,56],other:[7,56]}},
+"AST": {name:"Aspartate Aminotransferase", synonyms:["ast","aspartate aminotransferase","sgot"], unit:"U/L", ranges:{male:[10,40],female:[10,40],other:[10,40]}},
+"ALP": {name:"Alkaline Phosphatase", synonyms:["alp","alkaline phosphatase"], unit:"U/L", ranges:{male:[45,115],female:[30,100],other:[30,115]}},
+"VITAMIN_D": {name:"Vitamin D", synonyms:["vitamin d","25-oh vitamin d","25-hydroxy vitamin d"], unit:"ng/mL", ranges:{male:[30,100],female:[30,100],other:[30,100]}},
+"VITAMIN_B12": {name:"Vitamin B12", synonyms:["vitamin b12","cobalamin","b12"], unit:"pg/mL", ranges:{male:[200,900],female:[200,900],other:[200,900]}},
+"FOLATE": {name:"Folate", synonyms:["folate","folic acid"], unit:"ng/mL", ranges:{male:[3,17],female:[3,17],other:[3,17]}},
+"RDW": {name:"Red Cell Distribution Width", synonyms:["rdw","red cell distribution width","red blood cell width"], unit:"%", ranges:{male:[11.5,14.5],female:[11.5,14.5],other:[11.5,14.5]}},
+"MPV": {name:"Mean Platelet Volume", synonyms:["mpv","mean platelet volume"], unit:"fL", ranges:{male:[7.5,11.5],female:[7.5,11.5],other:[7.5,11.5]}},
+"LDH": {name:"Lactate Dehydrogenase", synonyms:["ldh","lactate dehydrogenase","l-lactate dehydrogenase"], unit:"U/L", ranges:{male:[140,280],female:[140,280],other:[140,280]}},
+"CRP_HIGH": {name:"C-Reactive Protein High Sensitivity", synonyms:["crp","c-reactive protein","crp high sensitivity"], unit:"mg/L", ranges:{male:[0,3],female:[0,3],other:[0,3]}},
+"UA": {name:"Uric Acid", synonyms:["ua","uric acid","urate"], unit:"mg/dL", ranges:{male:[3.4,7.0],female:[2.4,6.0],other:[2.4,7.0]}},
+"TSH": {name:"Thyroid Stimulating Hormone", synonyms:["tsh","thyroid stimulating hormone","thyroid function test"], unit:"µIU/mL", ranges:{male:[0.4,4.0],female:[0.4,4.0],other:[0.4,4.0]}},
+"FT4": {name:"Free T4", synonyms:["ft4","free t4","thyroxine"], unit:"ng/dL", ranges:{male:[0.8,1.8],female:[0.8,1.8],other:[0.8,1.8]}},
+"FT3": {name:"Free T3", synonyms:["ft3","free t3","triiodothyronine"], unit:"pg/mL", ranges:{male:[2.3,4.2],female:[2.3,4.2],other:[2.3,4.2]}},
+"A1C": {name:"Hemoglobin A1C", synonyms:["a1c","hba1c","hemoglobin a1c"], unit:"%", ranges:{male:[4.0,5.6],female:[4.0,5.6],other:[4.0,5.6]}},
+"GLU": {name:"Fasting Glucose", synonyms:["glu","glucose","fasting glucose","blood sugar"], unit:"mg/dL", ranges:{male:[70,99],female:[70,99],other:[70,99]}},
+"CHOL": {name:"Total Cholesterol", synonyms:["chol","cholesterol","total cholesterol"], unit:"mg/dL", ranges:{male:[125,200],female:[125,200],other:[125,200]}},
+"HDL": {name:"High-Density Lipoprotein", synonyms:["hdl","high density lipoprotein","good cholesterol"], unit:"mg/dL", ranges:{male:[40,60],female:[50,60],other:[40,60]}},
+"LDL": {name:"Low-Density Lipoprotein", synonyms:["ldl","low density lipoprotein","bad cholesterol"], unit:"mg/dL", ranges:{male:[0,130],female:[0,130],other:[0,130]}},
+"TRIG": {name:"Triglycerides", synonyms:["trig","triglycerides","triacylglycerol"], unit:"mg/dL", ranges:{male:[0,150],female:[0,150],other:[0,150]}},
+"BUN": {name:"Blood Urea Nitrogen", synonyms:["bun","blood urea nitrogen","urea"], unit:"mg/dL", ranges:{male:[7,20],female:[7,20],other:[7,20]}},
+"CREAT": {name:"Creatinine", synonyms:["creat","creatinine","serum creatinine"], unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}}
 // add more as needed
 };
 
@@ -171,6 +187,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
