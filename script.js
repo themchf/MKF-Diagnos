@@ -6,6 +6,12 @@ const LAB_DB = {
 "RBC":{name:"RBC", synonyms:["rbc","red blood cell","erythrocyte"],unit:"10^6/µL",ranges:{male:[4.5,5.9],female:[4.1,5.1],other:[4.1,5.9]}},
 "MCV":{name:"MCV", synonyms:["mcv","mean corpuscular volume"],unit:"fL",ranges:{male:[80,100],female:[80,100],other:[80,100]}},
 "PLT":{name:"Platelets", synonyms:["plt","platelet","platelets"],unit:"10^3/µL",ranges:{male:[150,450],female:[150,450],other:[150,450]}},
+"ALT": {name:"Alanine Aminotransferase", unit:"U/L", ranges:{male:[7,56],female:[7,56],other:[7,56]}},
+"AST": {name:"Aspartate Aminotransferase", unit:"U/L", ranges:{male:[10,40],female:[10,40],other:[10,40]}},
+"ALP": {name:"Alkaline Phosphatase", unit:"U/L", ranges:{male:[45,115],female:[30,100],other:[30,115]}},
+"VITAMIN_D": {name:"Vitamin D", unit:"ng/mL", ranges:{male:[30,100],female:[30,100],other:[30,100]}},
+"VITAMIN_B12": {name:"Vitamin B12", unit:"pg/mL", ranges:{male:[200,900],female:[200,900],other:[200,900]}},
+"FOLATE": {name:"Folate", unit:"ng/mL", ranges:{male:[3,17],female:[3,17],other:[3,17]}}
 // add more as needed
 };
 
@@ -165,6 +171,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
