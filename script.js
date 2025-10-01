@@ -132,6 +132,22 @@ function predictConditions(labs){
   if(labs["A1C"] && labs["A1C"].value > 5.6) cond.push("Prediabetes / Diabetes (High HbA1c)");
   if(labs["BUN"] && labs["BUN"].value > 20) cond.push("Kidney Function Abnormal (High BUN)");
   if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Kidney Function Abnormal (High Creatinine)");
+  if(labs["Glucose"] && labs["Glucose"].value < 70) cond.push("Hypoglycemia (Low Glucose)");
+ if(labs["Glucose"] && labs["Glucose"].value > 126) cond.push("Diabetes Mellitus (High Glucose)");
+ if(labs["Creatinine"] && labs["Creatinine"].value > 1.2) cond.push("Renal Impairment (High Creatinine)");
+ if(labs["Urea"] && labs["Urea"].value > 50) cond.push("Azotemia (High Urea)");
+ if(labs["ALT"] && labs["ALT"].value > 40) cond.push("Liver Injury (High ALT)");
+ if(labs["AST"] && labs["AST"].value > 40) cond.push("Liver Injury (High AST)");
+ if(labs["ALP"] && labs["ALP"].value > 120) cond.push("Cholestasis or Bone Disorder (High ALP)");
+ if(labs["Bilirubin"] && labs["Bilirubin"].value > 1.2) cond.push("Hyperbilirubinemia (High Bilirubin)");
+
+// Electrolytes
+ if(labs["Na"] && labs["Na"].value < 135) cond.push("Hyponatremia (Low Sodium)");
+ if(labs["Na"] && labs["Na"].value > 145) cond.push("Hypernatremia (High Sodium)");
+ if(labs["K"] && labs["K"].value < 3.5) cond.push("Hypokalemia (Low Potassium)");
+ if(labs["K"] && labs["K"].value > 5.0) cond.push("Hyperkalemia (High Potassium)");
+ if(labs["Ca"] && labs["Ca"].value < 8.5) cond.push("Hypocalcemia (Low Calcium)");
+ if(labs["Ca"] && labs["Ca"].value > 10.5) cond.push("Hypercalcemia (High Calcium)");
   return cond.length>0?cond:["No major abnormalities detected"];
 }
 
@@ -193,6 +209,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
