@@ -28,17 +28,17 @@ const LAB_DB = {
 "TRIG": {name:"Triglycerides", synonyms:["trig","triglycerides","triacylglycerol"], unit:"mg/dL", ranges:{male:[0,150],female:[0,150],other:[0,150]}},
 "BUN": {name:"Blood Urea Nitrogen", synonyms:["bun","blood urea nitrogen","urea"], unit:"mg/dL", ranges:{male:[7,20],female:[7,20],other:[7,20]}},
 "CREAT": {name:"Creatinine", synonyms:["creat","creatinine","serum creatinine"], unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}},
-"VitaminD": {name:"Vitamin D", synonyms:["vit d","25-hydroxy vitamin d","25(OH)D"], unit:"ng/mL", ranges:{other:[30,100]}},
-"VitaminB12": {name:"Vitamin B12", synonyms:["b12","cobalamin"], unit:"pg/mL", ranges:{other:[200,900]}},
-"Folate": {name:"Folate", synonyms:["folic acid","vitamin b9"], unit:"ng/mL", ranges:{other:[3,20]}},
-"VitaminA": {name:"Vitamin A", synonyms:["retinol"], unit:"µg/dL", ranges:{other:[20,80]}},
-"VitaminE": {name:"Vitamin E", synonyms:["alpha-tocopherol"], unit:"mg/L", ranges:{other:[5,20]}},
-"VitaminK": {name:"Vitamin K", synonyms:["phylloquinone"], unit:"ng/mL", ranges:{other:[0.2,3]}},
-"VitaminC": {name:"Vitamin C", synonyms:["ascorbic acid"], unit:"mg/dL", ranges:{other:[0.2,2.0]}},
-"Iron": {name:"Iron", synonyms:["serum iron"], unit:"µg/dL", ranges:{other:[50,170]}},
-"Ferritin": {name:"Ferritin", synonyms:["iron stores"], unit:"ng/mL", ranges:{male:[30,300],female:[15,150],other:[15,300]}},
-"TransferrinSaturation": {name:"Transferrin Saturation", synonyms:["tsat"], unit:"%", ranges:{other:[20,50]}},
-"TIBC": {name:"Total Iron Binding Capacity", synonyms:["tibc"], unit:"µg/dL", ranges:{other:[250,450]}}
+"VitaminD":{name:"Vitamin D",synonyms:["vit d","25-hydroxy vitamin d","25(OH)D"],unit:"ng/mL",ranges:{male:[30,100],female:[30,100],other:[30,100]}},
+"VitaminB12":{name:"Vitamin B12",synonyms:["b12","cobalamin"],unit:"pg/mL",ranges:{male:[200,900],female:[200,900],other:[200,900]}},
+"Folate":{name:"Folate",synonyms:["folic acid","vitamin b9"],unit:"ng/mL",ranges:{male:[3,20],female:[3,20],other:[3,20]}},
+"VitaminA":{name:"Vitamin A",synonyms:["retinol"],unit:"µg/dL",ranges:{male:[20,80],female:[20,80],other:[20,80]}},
+"VitaminE":{name:"Vitamin E",synonyms:["alpha-tocopherol"],unit:"mg/L",ranges:{male:[5,20],female:[5,20],other:[5,20]}},
+"VitaminK":{name:"Vitamin K",synonyms:["phylloquinone"],unit:"ng/mL",ranges:{male:[0.2,3],female:[0.2,3],other:[0.2,3]}},
+"VitaminC":{name:"Vitamin C",synonyms:["ascorbic acid"],unit:"mg/dL",ranges:{male:[0.2,2.0],female:[0.2,2.0],other:[0.2,2.0]}},
+"Iron":{name:"Iron",synonyms:["serum iron"],unit:"µg/dL",ranges:{male:[65,175],female:[50,170],other:[50,175]}},
+"Ferritin":{name:"Ferritin",synonyms:["iron stores"],unit:"ng/mL",ranges:{male:[30,300],female:[15,150],other:[15,300]}},
+"TransferrinSaturation":{name:"Transferrin Saturation",synonyms:["tsat"],unit:"%",ranges:{male:[20,50],female:[20,50],other:[20,50]}},
+"TIBC":{name:"Total Iron Binding Capacity",synonyms:["tibc"],unit:"µg/dL",ranges:{male:[250,450],female:[250,450],other:[250,450]}}
 // add more as needed
 };
 
@@ -241,6 +241,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
