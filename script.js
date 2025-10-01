@@ -27,7 +27,18 @@ const LAB_DB = {
 "LDL": {name:"Low-Density Lipoprotein", synonyms:["ldl","low density lipoprotein","bad cholesterol"], unit:"mg/dL", ranges:{male:[0,130],female:[0,130],other:[0,130]}},
 "TRIG": {name:"Triglycerides", synonyms:["trig","triglycerides","triacylglycerol"], unit:"mg/dL", ranges:{male:[0,150],female:[0,150],other:[0,150]}},
 "BUN": {name:"Blood Urea Nitrogen", synonyms:["bun","blood urea nitrogen","urea"], unit:"mg/dL", ranges:{male:[7,20],female:[7,20],other:[7,20]}},
-"CREAT": {name:"Creatinine", synonyms:["creat","creatinine","serum creatinine"], unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}}
+"CREAT": {name:"Creatinine", synonyms:["creat","creatinine","serum creatinine"], unit:"mg/dL", ranges:{male:[0.7,1.3],female:[0.6,1.1],other:[0.6,1.3]}},
+"VitaminD": {name:"Vitamin D", synonyms:["vit d","25-hydroxy vitamin d","25(OH)D"], unit:"ng/mL", ranges:{other:[30,100]}},
+"VitaminB12": {name:"Vitamin B12", synonyms:["b12","cobalamin"], unit:"pg/mL", ranges:{other:[200,900]}},
+"Folate": {name:"Folate", synonyms:["folic acid","vitamin b9"], unit:"ng/mL", ranges:{other:[3,20]}},
+"VitaminA": {name:"Vitamin A", synonyms:["retinol"], unit:"µg/dL", ranges:{other:[20,80]}},
+"VitaminE": {name:"Vitamin E", synonyms:["alpha-tocopherol"], unit:"mg/L", ranges:{other:[5,20]}},
+"VitaminK": {name:"Vitamin K", synonyms:["phylloquinone"], unit:"ng/mL", ranges:{other:[0.2,3]}},
+"VitaminC": {name:"Vitamin C", synonyms:["ascorbic acid"], unit:"mg/dL", ranges:{other:[0.2,2.0]}},
+"Iron": {name:"Iron", synonyms:["serum iron"], unit:"µg/dL", ranges:{other:[50,170]}},
+"Ferritin": {name:"Ferritin", synonyms:["iron stores"], unit:"ng/mL", ranges:{male:[30,300],female:[15,150],other:[15,300]}},
+"TransferrinSaturation": {name:"Transferrin Saturation", synonyms:["tsat"], unit:"%", ranges:{other:[20,50]}},
+"TIBC": {name:"Total Iron Binding Capacity", synonyms:["tibc"], unit:"µg/dL", ranges:{other:[250,450]}}
 // add more as needed
 };
 
@@ -109,30 +120,30 @@ function interpretValue(key,value){
 /* Simple predictions based on labs */
 function predictConditions(labs){
   const cond = [];
-  if(labs["HGB"] && labs["HGB"].value<12) cond.push("Anemia (Low Hemoglobin)");
-  if(labs["WBC"] && labs["WBC"].value>10) cond.push("Possible Infection (High WBC)");
-  if(labs["PLT"] && labs["PLT"].value<125) cond.push("Thrombocytopenia (Low Platelets)");
-  if(labs["HCT"] && labs["HCT"].value < 35) cond.push("Anemia (Low Hematocrit)");
-  if(labs["MCV"] && labs["MCV"].value > 100) cond.push("Macrocytosis (High MCV)");
-  if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
-  if(labs["CRP"] && labs["CRP"].value > 3) cond.push("Inflammation / Infection");
-  if(labs["MCH"] && labs["MCH"].value < 27) cond.push("Possible Iron Deficiency (Low MCH)");
-  if(labs["CHOL"] && labs["CHOL"].value > 200) cond.push("Hypercholesterolemia (High Total Cholesterol)");
-  if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
-  if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
-  if(labs["TRIG"] && labs["TRIG"].value > 150) cond.push("Hypertriglyceridemia (High Triglycerides)");
-  if(labs["Vitamin D"] && labs["Vitamin D"].value < 30) cond.push("Vitamin D Deficiency");
-  if(labs["Vitamin B12"] && labs["Vitamin B12"].value < 210) cond.push("Vitamin B12 Deficiency");
-  if(labs["Folate"] && labs["FOLATE"].value < 13) cond.push("Folate Deficiency");
-  if(labs["Ferritin"] && labs["Ferritin"].value < 25) cond.push("Low Iron");
-  if(labs["Iron"] && labs["Iron"].value < 49) cond.push("Low Iron");
-  if(labs["FT4"] && (labs["FT4"].value < 0.8 || labs["FT4"].value > 1.8)) cond.push("Thyroid Dysfunction (Free T4 abnormal)");
-  if(labs["FT3"] && (labs["FT3"].value < 2.3 || labs["FT3"].value > 4.2)) cond.push("Thyroid Dysfunction (Free T3 abnormal)");
-  if(labs["GLU"] && labs["GLU"].value > 99) cond.push("Hyperglycemia (High Fasting Glucose)");
-  if(labs["A1C"] && labs["A1C"].value > 5.6) cond.push("Prediabetes / Diabetes (High HbA1c)");
-  if(labs["BUN"] && labs["BUN"].value > 20) cond.push("Kidney Function Abnormal (High BUN)");
-  if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Kidney Function Abnormal (High Creatinine)");
-  if(labs["Glucose"] && labs["Glucose"].value < 70) cond.push("Hypoglycemia (Low Glucose)");
+ if(labs["HGB"] && labs["HGB"].value<12) cond.push("Anemia (Low Hemoglobin)");
+ if(labs["WBC"] && labs["WBC"].value>10) cond.push("Possible Infection (High WBC)");
+ if(labs["PLT"] && labs["PLT"].value<125) cond.push("Thrombocytopenia (Low Platelets)");
+ if(labs["HCT"] && labs["HCT"].value < 35) cond.push("Anemia (Low Hematocrit)");
+ if(labs["MCV"] && labs["MCV"].value > 100) cond.push("Macrocytosis (High MCV)");
+ if(labs["TSH"] && (labs["TSH"].value < 0.4 || labs["TSH"].value > 4.0)) cond.push("Thyroid Disorder");
+ if(labs["CRP"] && labs["CRP"].value > 3) cond.push("Inflammation / Infection");
+ if(labs["MCH"] && labs["MCH"].value < 27) cond.push("Possible Iron Deficiency (Low MCH)");
+ if(labs["CHOL"] && labs["CHOL"].value > 200) cond.push("Hypercholesterolemia (High Total Cholesterol)");
+ if(labs["LDL"] && labs["LDL"].value > 130) cond.push("High LDL (Cardiovascular Risk)");
+ if(labs["HDL"] && labs["HDL"].value < 40) cond.push("Low HDL (Cardiovascular Risk)");
+ if(labs["TRIG"] && labs["TRIG"].value > 150) cond.push("Hypertriglyceridemia (High Triglycerides)");
+ if(labs["Vitamin D"] && labs["Vitamin D"].value < 30) cond.push("Vitamin D Deficiency");
+ if(labs["Vitamin B12"] && labs["Vitamin B12"].value < 210) cond.push("Vitamin B12 Deficiency");
+ if(labs["Folate"] && labs["FOLATE"].value < 13) cond.push("Folate Deficiency");
+ if(labs["Ferritin"] && labs["Ferritin"].value < 25) cond.push("Low Iron");
+ if(labs["Iron"] && labs["Iron"].value < 49) cond.push("Low Iron");
+ if(labs["FT4"] && (labs["FT4"].value < 0.8 || labs["FT4"].value > 1.8)) cond.push("Thyroid Dysfunction (Free T4 abnormal)");
+ if(labs["FT3"] && (labs["FT3"].value < 2.3 || labs["FT3"].value > 4.2)) cond.push("Thyroid Dysfunction (Free T3 abnormal)");
+ if(labs["GLU"] && labs["GLU"].value > 99) cond.push("Hyperglycemia (High Fasting Glucose)");
+ if(labs["A1C"] && labs["A1C"].value > 5.6) cond.push("Prediabetes / Diabetes (High HbA1c)");
+ if(labs["BUN"] && labs["BUN"].value > 20) cond.push("Kidney Function Abnormal (High BUN)");
+ if(labs["CREAT"] && labs["CREAT"].value > 1.3) cond.push("Kidney Function Abnormal (High Creatinine)");
+ if(labs["Glucose"] && labs["Glucose"].value < 70) cond.push("Hypoglycemia (Low Glucose)");
  if(labs["Glucose"] && labs["Glucose"].value > 126) cond.push("Diabetes Mellitus (High Glucose)");
  if(labs["Creatinine"] && labs["Creatinine"].value > 1.2) cond.push("Renal Impairment (High Creatinine)");
  if(labs["Urea"] && labs["Urea"].value > 50) cond.push("Azotemia (High Urea)");
@@ -140,15 +151,36 @@ function predictConditions(labs){
  if(labs["AST"] && labs["AST"].value > 40) cond.push("Liver Injury (High AST)");
  if(labs["ALP"] && labs["ALP"].value > 120) cond.push("Cholestasis or Bone Disorder (High ALP)");
  if(labs["Bilirubin"] && labs["Bilirubin"].value > 1.2) cond.push("Hyperbilirubinemia (High Bilirubin)");
-
-// Electrolytes
  if(labs["Na"] && labs["Na"].value < 135) cond.push("Hyponatremia (Low Sodium)");
  if(labs["Na"] && labs["Na"].value > 145) cond.push("Hypernatremia (High Sodium)");
  if(labs["K"] && labs["K"].value < 3.5) cond.push("Hypokalemia (Low Potassium)");
  if(labs["K"] && labs["K"].value > 5.0) cond.push("Hyperkalemia (High Potassium)");
  if(labs["Ca"] && labs["Ca"].value < 8.5) cond.push("Hypocalcemia (Low Calcium)");
  if(labs["Ca"] && labs["Ca"].value > 10.5) cond.push("Hypercalcemia (High Calcium)");
-  return cond.length>0?cond:["No major abnormalities detected"];
+ if(labs["Vitamin D"] && labs["Vitamin D"].value < 20) cond.push("Severe Vitamin D Deficiency");
+ if(labs["Vitamin D"] && labs["Vitamin D"].value >= 20 && labs["Vitamin D"].value < 30) cond.push("Vitamin D Insufficiency");
+ if(labs["Vitamin D"] && labs["Vitamin D"].value > 100) cond.push("Vitamin D Toxicity (Hypervitaminosis D)");
+ if(labs["Vitamin B12"] && labs["Vitamin B12"].value < 200) cond.push("Vitamin B12 Deficiency (Risk of Megaloblastic Anemia)");
+ if(labs["Vitamin B12"] && labs["Vitamin B12"].value > 900) cond.push("High Vitamin B12 (Possible Liver Disease or Myeloproliferative Disorder)");
+ if(labs["Folate"] && labs["Folate"].value < 3) cond.push("Folate Deficiency (Risk of Megaloblastic Anemia)");
+ if(labs["Folate"] && labs["Folate"].value > 20) cond.push("High Folate (Possible Excess Supplementation)");
+ if(labs["Vitamin A"] && labs["Vitamin A"].value < 20) cond.push("Vitamin A Deficiency (Risk of Vision and Immune Issues)");
+ if(labs["Vitamin A"] && labs["Vitamin A"].value > 80) cond.push("Vitamin A Toxicity (Hypervitaminosis A)");
+ if(labs["Vitamin E"] && labs["Vitamin E"].value < 5) cond.push("Vitamin E Deficiency (Oxidative Stress Risk)");
+ if(labs["Vitamin E"] && labs["Vitamin E"].value > 20) cond.push("Vitamin E Excess (Possible Coagulation Impairment)");
+ if(labs["Vitamin K"] && labs["Vitamin K"].value < 0.2) cond.push("Vitamin K Deficiency (Risk of Bleeding)");
+ if(labs["Vitamin K"] && labs["Vitamin K"].value > 3) cond.push("High Vitamin K (Possible Over-supplementation)");
+ if(labs["Vitamin C"] && labs["Vitamin C"].value < 0.2) cond.push("Vitamin C Deficiency (Scurvy Risk)");
+ if(labs["Vitamin C"] && labs["Vitamin C"].value > 2.0) cond.push("High Vitamin C (Possible Kidney Stone Risk)");
+ if(labs["Iron"] && labs["Iron"].value < 50) cond.push("Iron Deficiency (Low Serum Iron)");
+ if(labs["Iron"] && labs["Iron"].value > 170) cond.push("Iron Overload (Possible Hemochromatosis or Excess Intake)");
+ if(labs["Ferritin"] && labs["Ferritin"].value < 30) cond.push("Iron Deficiency (Low Ferritin, Depleted Stores)");
+ if(labs["Ferritin"] && labs["Ferritin"].value > 300) cond.push("High Ferritin (Possible Inflammation, Liver Disease, or Hemochromatosis)");
+ if(labs["Transferrin Saturation"] && labs["Transferrin Saturation"].value < 20) cond.push("Iron Deficiency (Low Transferrin Saturation)");
+ if(labs["Transferrin Saturation"] && labs["Transferrin Saturation"].value > 50) cond.push("Iron Overload (High Transferrin Saturation)");
+ if(labs["TIBC"] && labs["TIBC"].value > 450) cond.push("Iron Deficiency (High TIBC)");
+ if(labs["TIBC"] && labs["TIBC"].value < 250) cond.push("Iron Overload or Chronic Disease (Low TIBC)");
+ return cond.length>0?cond:["No major abnormalities detected"];
 }
 
 /* Main analyze function */
@@ -209,6 +241,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
