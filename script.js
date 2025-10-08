@@ -75,7 +75,7 @@ function parseNumbersFromText(text){
   const matches = [];
   let m;
   while((m=rx.exec(text))!==null){
-    matches.push({num:Number(m[1]), index:m.index});
+    matches.push({num:Number(m[0]), index:m.index});
   }
   return matches;
 }
@@ -241,6 +241,7 @@ document.getElementById('analyzeBtn').addEventListener('click', async ()=>{
     statusText.innerText='Error: '+err.message;
   }
 });
+
 
 
 
