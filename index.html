@@ -1,44 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MKF Diagnostics</title>
-<link rel="stylesheet" href="style.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.6.172/pdf.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MKF Diagnosis | Advanced Lab Reader</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 </head>
 <body>
-<div class="container">
-<header>
-<h1>MKF Diagnostics</h1>
-<p class="muted">Upload PDF or image — get lab flags and predicted conditions.</p>
-</header>
+    <div class="container">
+        <header>
+            <h1>MKF Diagnosis</h1>
+            <p>Upload your lab test (Image or PDF) for instant analysis.</p>
+        </header>
 
-<section class="upload">
-<label class="field"><span>Upload PDF or image</span><input id="fileInput" type="file" accept=".pdf,image/*"/></label>
-<div class="inline-fields">
-<label>Sex<select id="sex"><option value="male">Male</option><option value="female">Female</option><option value="other">Other</option></select></label>
-<label>Age<input id="age" type="number" min="0" max="120" value="35"/></label>
-</div>
-<button id="analyzeBtn">Analyze Report</button>
-</section>
+        <div class="disclaimer">
+            <strong>⚠️ Medical Disclaimer:</strong> Always consult a doctor.
+        </div>
 
-<section id="status" class="card"><strong>Status:</strong> <span id="statusText">Waiting for upload</span></section>
+        <div class="upload-section">
+            <input type="file" id="fileInput" accept=".pdf, image/png, image/jpeg, image/jpg">
+            <button id="analyzeBtn">Analyze Lab Test</button>
+        </div>
 
-<section id="flagsSection" class="card hidden">
-<h2>Lab Flags</h2>
-<div id="flagsList"></div>
-</section>
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p id="loadingText">Analyzing document... please wait.</p>
+        </div>
 
-<section id="predictionSection" class="card hidden">
-<h2>Predicted Conditions</h2>
-<div id="predictionList"></div>
-</section>
+        <div id="historySection" class="hidden">
+            <h3>🕒 Last Saved Result</h3>
+            <button id="loadHistoryBtn" class="secondary-btn">View Previous Analysis</button>
+            <button id="clearHistoryBtn" class="danger-btn">Clear Memory</button>
+        </div>
 
-<footer class="disclaimer"><strong>Disclaimer:</strong> Educational purposes only.</footer>
-</div>
+        <div id="results" class="hidden">
+            <h2>Diagnostic Findings</h2>
+            <div id="extractedData"></div>
+            <div id="diagnosisCard"></div>
+            
+            <details>
+                <summary>View Raw Extracted Text</summary>
+                <pre id="rawText"></pre>
+            </details>
+        </div>
+    </div>
 
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
