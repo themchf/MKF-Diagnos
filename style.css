@@ -1,26 +1,94 @@
-:root{
-  --bg:#070707; --card:#0f1112; --accent:#ff0066; --cyan:#00ffd1; --muted:#9aa2a6; --text:#e6eef0;
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #6c757d;
+    --danger-color: #dc3545;
+    --bg-color: #f4f7f6;
+    --card-bg: #ffffff;
+    --text-color: #333333;
 }
-*{box-sizing:border-box;}
-body{margin:0;font-family:Inter, system-ui, Roboto, Arial;background:linear-gradient(#020202,var(--bg));color:var(--text);}
-.container{max-width:980px;margin:24px auto;padding:18px;}
-header h1{margin:0;color:var(--accent);}
-.muted{color:var(--muted);margin-bottom:12px;}
-.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 30px rgba(0,0,0,0.6);margin-top:12px;}
-.upload{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin-top:12px;}
-.field{display:flex;flex-direction:column;gap:6px;}
-input[type=file]{padding:8px;background:#071017;border-radius:8px;color:var(--text);border:1px solid rgba(255,255,255,0.03);}
-.inline-fields{display:flex;gap:10px;align-items:center;}
-.inline-fields label{display:flex;flex-direction:column;color:var(--muted);font-size:13px;}
-input[type=number],select{padding:8px;border-radius:6px;border:1px solid rgba(255,255,255,0.03);background:#071017;color:var(--text);}
-button{background:linear-gradient(180deg,var(--accent),#ff2a8a);color:white;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600;}
-button:active{transform:translateY(1px);}
-.hidden{display:none;}
-.result-row{display:flex;gap:10px;align-items:center;padding:8px 6px;border-bottom:1px dashed rgba(255,255,255,0.03);}
-.result-name{width:240px;color:var(--cyan);font-weight:700;}
-.result-val{width:140px;font-weight:700;}
-.result-flag{padding:6px 8px;border-radius:6px;font-weight:700;}
-.flag-low{background:#163a5f;color:#9ed0ff;}
-.flag-high{background:#4a1b1b;color:#ffb7b7;}
-.flag-normal{background:#0b2d18;color:#9effb5;}
-.disclaimer{margin-top:18px;color:var(--muted);font-size:13px;}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 750px;
+    width: 100%;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+header { text-align: center; border-bottom: 2px solid #eaeaea; padding-bottom: 15px; margin-bottom: 20px; }
+h1 { color: var(--primary-color); margin-bottom: 5px; }
+
+.disclaimer {
+    background-color: #fff3cd; color: #856404; padding: 12px;
+    border-radius: 6px; font-size: 0.9em; margin-bottom: 20px;
+    border-left: 5px solid #ffeeba;
+}
+
+.upload-section, #historySection {
+    display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+}
+
+input[type="file"] { flex-grow: 1; padding: 10px; border: 1px dashed #ccc; border-radius: 6px; }
+
+button {
+    background-color: var(--primary-color); color: white; border: none;
+    padding: 10px 15px; border-radius: 6px; cursor: pointer; transition: 0.3s;
+}
+button:hover { background-color: #004494; }
+
+.secondary-btn { background-color: var(--secondary-color); }
+.secondary-btn:hover { background-color: #5a6268; }
+
+.danger-btn { background-color: var(--danger-color); }
+.danger-btn:hover { background-color: #c82333; }
+
+.hidden { display: none !important; }
+
+/* Loading Spinner */
+#loading { text-align: center; margin: 20px 0; }
+.spinner {
+    border: 4px solid #f3f3f3; border-top: 4px solid var(--primary-color);
+    border-radius: 50%; width: 40px; height: 40px;
+    animation: spin 1s linear infinite; margin: 0 auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+/* Findings & Range Bars */
+.finding {
+    padding: 15px; margin: 10px 0; border-radius: 6px; background: #f8f9fa;
+    border: 1px solid #dee2e6;
+}
+
+.range-container {
+    width: 100%; background-color: #e9ecef; height: 10px;
+    border-radius: 5px; margin-top: 8px; position: relative;
+}
+
+.range-normal-zone {
+    position: absolute; height: 100%; background-color: #28a745; opacity: 0.4;
+}
+
+.range-marker {
+    position: absolute; width: 4px; height: 16px; background-color: #000;
+    top: -3px; border-radius: 2px;
+}
+
+.status-badge {
+    display: inline-block; padding: 3px 8px; border-radius: 12px;
+    font-size: 0.8em; font-weight: bold; margin-left: 10px;
+}
+.badge-normal { background: #d4edda; color: #155724; }
+.badge-abnormal { background: #f8d7da; color: #721c24; }
+
+pre { background: #eee; padding: 10px; border-radius: 4px; font-size: 0.85em; overflow-x: auto; white-space: pre-wrap; }
